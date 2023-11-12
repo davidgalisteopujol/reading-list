@@ -8,6 +8,12 @@ import { TitleCounterComponent } from './components/title-counter/title-counter.
 import { FilterComponent } from './components/filter/filter.component';
 import { BooksComponent } from './components/books/books.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +26,11 @@ import { BooksListComponent } from './components/books-list/books-list.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatCardModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

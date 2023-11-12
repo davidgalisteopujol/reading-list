@@ -1,1 +1,25 @@
-<p>books works!</p>
+<div class="main-card-container">
+
+  <div class="container-de-prueba" cdkDropList #avaibleBooksList="cdkDropList" [cdkDropListData]="avaibleBooks"
+    [cdkDropListConnectedTo]="[readBooksList]" (cdkDropListDropped)="drop($event)">
+    <div class="book" *ngFor="let book of avaibleBooks; let i = index" cdkDrag>
+      <p>{{book.book.synopsis}}</p>
+      <div class="cover">
+        <img src={{book.book.cover}}>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="example-container">
+    <div cdkDropList #readBooksList="cdkDropList" [cdkDropListData]="readBooks"
+      [cdkDropListConnectedTo]="[avaibleBooksList]" class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="book2" *ngFor="let book of readBooks; let i = index" cdkDrag>
+        <div class="cover2">
+          <img src={{book.book.cover}} />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
