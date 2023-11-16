@@ -1,13 +1,9 @@
 // books.component.ts
 import { Component, OnInit, inject } from '@angular/core';
-import { Book } from 'src/app/interfaces/book.interface';
+import { Book, Books } from 'src/app/interfaces/book.interface';
 import { BooksService } from 'src/app/services/books.service';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-import { Observable, Subject } from 'rxjs';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, } from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-books',
@@ -18,27 +14,29 @@ export class BooksComponent implements OnInit {
 
   public avaibleBooks: Book[] = [];
   public readBooks: Book[] = [];
-
   private booksService = inject(BooksService);
-  
+
 
   ngOnInit(): void {
     this.getBooks();
+    //  this.getBooks2()
   }
 
+
   getBooks(): void {
-    this.booksService.getBooks().subscribe((response: any) => {
+    this.booksService.getBooks().subscribe((response: Books) => {
       if (response && response.library) {
-        this.avaibleBooks = response.library;
-        this.booksService.setBooksLength(response.library.length)
+        this.avaibleBooks = response.library.map((libraryItem:any) => libraryItem.book);
+        this.booksService.setBooksLength(this.avaibleBooks.length);
+        
       }
     });
   }
 
+
   drop(event: CdkDragDrop<Book[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-     
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -51,7 +49,11 @@ export class BooksComponent implements OnInit {
   }
 
 
- 
+   getBooks2(){
+     this.booksService.getFilteredBooks(500).subscribe(response=>console.log(response)
+     )
+   }
+
 
 
 

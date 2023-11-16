@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSliderModule} from '@angular/material/slider';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,7 +25,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     TitleCounterComponent,
     FilterComponent,
     BooksComponent,
-    BooksListComponent
+    BooksListComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
-    DragDropModule
+    DragDropModule,
+    MatSliderModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
