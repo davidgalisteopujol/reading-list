@@ -10,7 +10,7 @@ import { Book, Books } from '../interfaces/book.interface';
 export class BooksService {
 
   private apiUrl = 'assets/json/books.json';
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
   private booksLength$ = new Subject<number>();
 
 

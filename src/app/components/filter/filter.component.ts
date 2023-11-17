@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { BooksService } from 'src/app/services/books.service';
+import { FilterBooksService } from '../../services/filter-books.service';
 
 @Component({
   selector: 'app-filter',
@@ -10,6 +11,7 @@ export class FilterComponent {
  
 
   private booksService = inject(BooksService);
+  private FilterBooksService = inject(FilterBooksService)
   currentPages: number = 0;
 
   formatLabel(value: number): string {

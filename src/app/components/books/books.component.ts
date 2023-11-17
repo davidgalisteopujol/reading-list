@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Book, Books } from 'src/app/interfaces/book.interface';
 import { BooksService } from 'src/app/services/books.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem, } from '@angular/cdk/drag-drop';
+import { FilterBooksService } from '../../services/filter-books.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class BooksComponent implements OnInit {
   public avaibleBooks: Book[] = [];
   public readBooks: Book[] = [];
   private booksService = inject(BooksService);
+  private filterBooksService = inject(FilterBooksService)
 
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class BooksComponent implements OnInit {
       if (response && response.library) {
         this.avaibleBooks = response.library.map((libraryItem:any) => libraryItem.book);
         this.booksService.setBooksLength(this.avaibleBooks.length);
-        
+        this.filterBooksService.setLeakedBooks(this.avaibleBooks)
       }
     });
   }
